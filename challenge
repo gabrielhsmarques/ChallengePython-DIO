@@ -1,0 +1,56 @@
+menu = """
+
+[d]Deposit
+[w]Withdraw 
+[e]Extract
+[q]Quit
+
+=> """
+
+balance = 0
+limit = 500
+extract = ""
+num_withdraw = 0
+LIMIT_WITHDRAW = 3
+deposit = 0
+
+while True:
+
+    option = input(menu)
+
+    if option == "d":
+        print("Deposit")
+        deposit = int(input("Value:"))
+        print(f"you deposited: R${deposit:.2f}")
+        extract += f"deposit R${deposit:.2f}"
+        if( deposit <= 0):
+            print("Invalid operation")
+        else:
+            balance += deposit
+        
+    elif option == "w":
+        if num_withdraw <= LIMIT_WITHDRAW:
+            print("Withdraw")
+            withdraw = int(input())
+            print(f"you withdrew: R${withdraw:.2f}")
+            extract += f"withdraw R${withdraw:.2f}"
+            if withdraw > limit:
+                print("Invalid operation")
+            balance -= withdraw
+        num_withdraw += 1
+        
+
+    elif option == "e":
+        print("Extract")
+        if extract == "":
+            print("No move was made")
+        else:
+            print(f"balance available: R${balance:.2f}")
+            print(extract)
+            
+        
+    elif option == "q":
+        break
+
+    else:
+        print("Invalid Operation. Please, reselect the desired operation")
